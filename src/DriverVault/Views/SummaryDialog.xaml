@@ -1,0 +1,116 @@
+<Window x:Class="DriverVault.Views.SummaryDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Resumen de extracción"
+        Width="660"
+        Height="500"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        Background="{DynamicResource BgPrimary}"
+        Foreground="{DynamicResource TextPrimary}"
+        FontFamily="Segoe UI"
+        FontSize="13">
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="0,0,0,14">
+            <TextBlock x:Name="TxtTag" Text="RESPALDO COMPLETADO" Style="{StaticResource SectionLabel}" Margin="0,0,0,4" />
+            <TextBlock x:Name="TxtHeadline" Text="Tus drivers fueron guardados y organizados" FontSize="20" FontWeight="Bold" />
+            <TextBlock x:Name="TxtOutputPath" Foreground="{DynamicResource TextSecondary}" FontFamily="Consolas" FontSize="12" Margin="0,4,0,0" TextWrapping="Wrap" />
+        </StackPanel>
+
+        <UniformGrid Grid.Row="1" Columns="4" Margin="0,0,0,14">
+            <Border Style="{StaticResource CardBorder}" Padding="12" Margin="0,0,8,0">
+                <StackPanel>
+                    <TextBlock Text="EXPORTADOS" Style="{StaticResource SectionLabel}" />
+                    <TextBlock x:Name="TxtSuccessCount" FontSize="22" FontWeight="Bold" Margin="0,4,0,0" />
+                </StackPanel>
+            </Border>
+            <Border Style="{StaticResource CardBorder}" Padding="12" Margin="0,0,8,0">
+                <StackPanel>
+                    <TextBlock Text="OMITIDOS / ERROR" Style="{StaticResource SectionLabel}" />
+                    <TextBlock x:Name="TxtIssueCount" FontSize="22" FontWeight="Bold" Margin="0,4,0,0" />
+                </StackPanel>
+            </Border>
+            <Border Style="{StaticResource CardBorder}" Padding="12" Margin="0,0,8,0">
+                <StackPanel>
+                    <TextBlock Text="TAMAÑO TOTAL" Style="{StaticResource SectionLabel}" />
+                    <TextBlock x:Name="TxtTotalSize" FontSize="20" FontWeight="Bold" Margin="0,4,0,0" />
+                </StackPanel>
+            </Border>
+            <Border Style="{StaticResource CardBorder}" Padding="12">
+                <StackPanel>
+                    <TextBlock Text="DURACIÓN" Style="{StaticResource SectionLabel}" />
+                    <TextBlock x:Name="TxtElapsed" FontSize="20" FontWeight="Bold" Margin="0,4,0,0" />
+                </StackPanel>
+            </Border>
+        </UniformGrid>
+
+        <TextBlock Grid.Row="2" Text="DETALLE POR CONTROLADOR" Style="{StaticResource SectionLabel}" Margin="0,0,0,6" />
+
+        <Border Grid.Row="3" Style="{StaticResource CardBorder}" Padding="8" Margin="0,0,0,16">
+            <ListBox x:Name="ListResults"
+                     Background="Transparent"
+                     BorderThickness="0"
+                     Foreground="{DynamicResource TextPrimary}"
+                     FontSize="12"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="{DynamicResource BorderSubtle}" BorderThickness="0,0,0,1" Padding="6,7">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="82" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Border Grid.Column="0"
+                                        Background="{DynamicResource BadgeBg}"
+                                        BorderBrush="{DynamicResource BadgeBorder}"
+                                        BorderThickness="1"
+                                        CornerRadius="4"
+                                        Padding="6,2"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding StatusLabel}" FontFamily="Consolas" FontSize="11" FontWeight="Bold" />
+                                </Border>
+                                <StackPanel Grid.Column="1" Margin="8,0">
+                                    <TextBlock Text="{Binding DriverName}" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" />
+                                    <TextBlock Text="{Binding FolderLine}" Foreground="{DynamicResource TextMuted}" FontFamily="Consolas" FontSize="11" TextTrimming="CharacterEllipsis" />
+                                </StackPanel>
+                                <TextBlock Grid.Column="2" Text="{Binding Message}" Foreground="{DynamicResource TextSecondary}" VerticalAlignment="Center" FontSize="11.5" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Border>
+
+        <DockPanel Grid.Row="4">
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                <Button x:Name="BtnOpenFolder"
+                        Content="Abrir carpeta guardada"
+                        Style="{StaticResource PrimaryButton}"
+                        Click="BtnOpenFolder_Click"
+                        Margin="0,0,10,0" />
+                <Button x:Name="BtnOpenReport"
+                        Content="Ver Inventario HTML"
+                        Style="{StaticResource SecondaryButton}"
+                        Click="BtnOpenReport_Click" />
+            </StackPanel>
+            <Button Content="Cerrar"
+                    DockPanel.Dock="Right"
+                    HorizontalAlignment="Right"
+                    Style="{StaticResource SecondaryButton}"
+                    Click="BtnClose_Click"
+                    MinWidth="90" />
+        </DockPanel>
+    </Grid>
+</Window>

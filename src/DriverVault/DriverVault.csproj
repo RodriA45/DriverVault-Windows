@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>DriverVault</AssemblyName>
+    <RootNamespace>DriverVault</RootNamespace>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Assets\drivervault.ico</ApplicationIcon>
+    <Version>1.0.0</Version>
+    <Product>DriverVault</Product>
+    <Description>Extractor y organizador moderno de drivers para Windows (PCs nuevas y antiguas)</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\drivervault.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Management" Version="8.0.0" />
+  </ItemGroup>
+
+</Project>

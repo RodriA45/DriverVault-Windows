@@ -1,0 +1,26 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="BgPrimary" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="BgSurface" Color="#F7F7F8" />
+    <SolidColorBrush x:Key="BgElevated" Color="#EFEFF1" />
+    <SolidColorBrush x:Key="BgHover" Color="#E4E4E7" />
+    <SolidColorBrush x:Key="BgInput" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="BgNotice" Color="#F4F4F5" />
+
+    <SolidColorBrush x:Key="BorderSubtle" Color="#E4E4E7" />
+    <SolidColorBrush x:Key="BorderStrong" Color="#A1A1AA" />
+    <SolidColorBrush x:Key="BorderFocus" Color="#09090B" />
+
+    <SolidColorBrush x:Key="TextPrimary" Color="#09090B" />
+    <SolidColorBrush x:Key="TextSecondary" Color="#52525B" />
+    <SolidColorBrush x:Key="TextMuted" Color="#71717A" />
+
+    <SolidColorBrush x:Key="AccentBg" Color="#09090B" />
+    <SolidColorBrush x:Key="AccentHoverBg" Color="#27272A" />
+    <SolidColorBrush x:Key="AccentFg" Color="#FFFFFF" />
+
+    <SolidColorBrush x:Key="BadgeBg" Color="#F4F4F5" />
+    <SolidColorBrush x:Key="BadgeBorder" Color="#D4D4D8" />
+    <SolidColorBrush x:Key="BadgeStrongBg" Color="#09090B" />
+    <SolidColorBrush x:Key="BadgeStrongFg" Color="#FFFFFF" />
+</ResourceDictionary>

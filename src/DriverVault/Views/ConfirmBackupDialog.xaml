@@ -1,0 +1,118 @@
+<Window x:Class="DriverVault.Views.ConfirmBackupDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Confirmar extracción de drivers"
+        Width="600"
+        SizeToContent="Height"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        Background="{DynamicResource BgPrimary}"
+        Foreground="{DynamicResource TextPrimary}"
+        FontFamily="Segoe UI"
+        FontSize="13">
+    <Border Padding="24">
+        <StackPanel>
+            <TextBlock Text="CONFIRMACIÓN ANTES DE EXTRAER"
+                       Style="{StaticResource SectionLabel}"
+                       Margin="0,0,0,6" />
+            <TextBlock Text="Revisá dónde y cómo se guardarán tus drivers"
+                       FontSize="19"
+                       FontWeight="Bold"
+                       Margin="0,0,0,14" />
+
+            <!-- Aviso principal de creación de subcarpetas -->
+            <Border Style="{StaticResource NoticeBanner}" Margin="0,0,0,14">
+                <StackPanel>
+                    <TextBlock Text="Aviso de estructura automática"
+                               FontWeight="SemiBold"
+                               FontSize="13"
+                               Margin="0,0,0,4" />
+                    <TextBlock x:Name="TxtSubfolderNotice"
+                               TextWrapping="Wrap"
+                               Foreground="{DynamicResource TextSecondary}"
+                               FontSize="12.5" />
+                </StackPanel>
+            </Border>
+
+            <!-- Detalles del respaldo -->
+            <Border Style="{StaticResource CardBorder}" Padding="14" Margin="0,0,0,14">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="155" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Carpeta destino:" Foreground="{DynamicResource TextMuted}" Margin="0,0,0,7" />
+                    <TextBlock Grid.Row="0" Grid.Column="1" x:Name="TxtDestinationPath" FontFamily="Consolas" FontSize="12" TextWrapping="Wrap" Margin="0,0,0,7" />
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Drivers a exportar:" Foreground="{DynamicResource TextMuted}" Margin="0,0,0,7" />
+                    <TextBlock Grid.Row="1" Grid.Column="1" x:Name="TxtDriverCount" FontWeight="SemiBold" Margin="0,0,0,7" />
+
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Organización:" Foreground="{DynamicResource TextMuted}" Margin="0,0,0,7" />
+                    <TextBlock Grid.Row="2" Grid.Column="1" x:Name="TxtOrgMode" Margin="0,0,0,7" />
+
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Espacio requerido / libre:" Foreground="{DynamicResource TextMuted}" Margin="0,0,0,7" />
+                    <TextBlock Grid.Row="3" Grid.Column="1" x:Name="TxtSpaceCheck" Margin="0,0,0,7" />
+
+                    <TextBlock Grid.Row="4" Grid.Column="0" Text="Permisos actuales:" Foreground="{DynamicResource TextMuted}" Margin="0,0,0,7" />
+                    <TextBlock Grid.Row="4" Grid.Column="1" x:Name="TxtAdminStatus" Margin="0,0,0,7" />
+
+                    <TextBlock Grid.Row="5" Grid.Column="0" Text="Archivos extra:" Foreground="{DynamicResource TextMuted}" />
+                    <TextBlock Grid.Row="5" Grid.Column="1" x:Name="TxtExtras" TextWrapping="Wrap" />
+                </Grid>
+            </Border>
+
+            <!-- Aviso si la carpeta destino ya existe -->
+            <Border x:Name="ExistingFolderPanel"
+                    Style="{StaticResource NoticeBanner}"
+                    Visibility="Collapsed"
+                    Margin="0,0,0,14">
+                <StackPanel>
+                    <TextBlock Text="¡Atención! Ya existe una carpeta con ese nombre en el destino"
+                               FontWeight="SemiBold"
+                               Margin="0,0,0,6" />
+                    <RadioButton x:Name="RbCreateUnique"
+                                 Content="Crear una carpeta nueva agregando la hora (Recomendado, no borra nada)"
+                                 IsChecked="True"
+                                 Foreground="{DynamicResource TextPrimary}"
+                                 Margin="0,0,0,5" />
+                    <RadioButton x:Name="RbMergeOverwrite"
+                                 Content="Guardar dentro de la carpeta existente (combinar / sobrescribir)"
+                                 Foreground="{DynamicResource TextPrimary}" />
+                </StackPanel>
+            </Border>
+
+            <!-- Aviso si falta espacio -->
+            <Border x:Name="LowSpacePanel"
+                    Style="{StaticResource NoticeBanner}"
+                    Visibility="Collapsed"
+                    Margin="0,0,0,14">
+                <TextBlock x:Name="TxtLowSpaceWarning"
+                           TextWrapping="Wrap"
+                           FontWeight="Medium" />
+            </Border>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,4,0,0">
+                <Button Content="Cancelar"
+                        Style="{StaticResource SecondaryButton}"
+                        Click="BtnCancel_Click"
+                        Margin="0,0,10,0"
+                        MinWidth="100" />
+                <Button x:Name="BtnConfirm"
+                        Content="Confirmar y Extraer"
+                        Style="{StaticResource PrimaryButton}"
+                        Click="BtnConfirm_Click"
+                        MinWidth="170" />
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</Window>

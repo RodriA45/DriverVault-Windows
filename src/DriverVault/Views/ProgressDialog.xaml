@@ -1,0 +1,75 @@
+<Window x:Class="DriverVault.Views.ProgressDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Extrayendo drivers..."
+        Width="580"
+        Height="410"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        Background="{DynamicResource BgPrimary}"
+        Foreground="{DynamicResource TextPrimary}"
+        FontFamily="Segoe UI"
+        FontSize="13">
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   Text="EXTRACCIÓN EN CURSO"
+                   Style="{StaticResource SectionLabel}"
+                   Margin="0,0,0,4" />
+
+        <DockPanel Grid.Row="1" Margin="0,0,0,12">
+            <TextBlock x:Name="TxtCounter"
+                       DockPanel.Dock="Right"
+                       FontFamily="Consolas"
+                       FontSize="13"
+                       FontWeight="SemiBold"
+                       VerticalAlignment="Center"
+                       Text="0 / 0" />
+            <TextBlock x:Name="TxtCurrentDriver"
+                       FontSize="16"
+                       FontWeight="SemiBold"
+                       TextTrimming="CharacterEllipsis"
+                       Text="Preparando carpetas..." />
+        </DockPanel>
+
+        <ProgressBar Grid.Row="2"
+                     x:Name="ProgressBarExport"
+                     Minimum="0"
+                     Maximum="100"
+                     Value="0"
+                     Margin="0,0,0,12" />
+
+        <TextBlock Grid.Row="3"
+                   Text="REGISTRO DETALLADO"
+                   Style="{StaticResource SectionLabel}"
+                   Margin="0,0,0,6" />
+
+        <Border Grid.Row="4" Style="{StaticResource CardBorder}" Padding="10" Margin="0,0,0,14">
+            <TextBox x:Name="TxtLog"
+                     IsReadOnly="True"
+                     BorderThickness="0"
+                     Background="Transparent"
+                     Foreground="{DynamicResource TextSecondary}"
+                     FontFamily="Consolas"
+                     FontSize="11.5"
+                     TextWrapping="Wrap"
+                     VerticalScrollBarVisibility="Auto" />
+        </Border>
+
+        <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="BtnCancel"
+                    Content="Cancelar extracción"
+                    Style="{StaticResource SecondaryButton}"
+                    Click="BtnCancel_Click" />
+        </StackPanel>
+    </Grid>
+</Window>
