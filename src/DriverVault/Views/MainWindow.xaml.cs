@@ -25,6 +25,7 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+        AdaptToCurrentScreenWorkArea();
 
         TxtBackupName.Text = $"Drivers_{PathOrganizer.SanitizeSegment(Environment.MachineName, "MiPC", 32)}";
         TxtDestinationRoot.Text = Path.Combine(
@@ -33,6 +34,19 @@ public partial class MainWindow : Window
 
         _isInitializing = false;
         Loaded += MainWindow_Loaded;
+    }
+
+    private void AdaptToCurrentScreenWorkArea()
+    {
+        Rect workArea = SystemParameters.WorkArea;
+        if (workArea.Width <= 0 || workArea.Height <= 0) return;
+
+        MaxWidth = workArea.Width;
+        MaxHeight = workArea.Height;
+        MinWidth = Math.Min(MinWidth, Math.Max(640, workArea.Width * 0.90));
+        MinHeight = Math.Min(MinHeight, Math.Max(460, workArea.Height * 0.85));
+        Width = Math.Min(Width, workArea.Width * 0.94);
+        Height = Math.Min(Height, workArea.Height * 0.92);
     }
 
     private async void MainWindow_Loaded(object sender, RoutedEventArgs e)

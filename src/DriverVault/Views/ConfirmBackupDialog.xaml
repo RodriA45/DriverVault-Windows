@@ -11,7 +11,8 @@
         Foreground="{DynamicResource TextPrimary}"
         FontFamily="Segoe UI"
         FontSize="13">
-    <Border Padding="24">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Border Padding="24">
         <StackPanel>
             <TextBlock Text="CONFIRMACIÓN ANTES DE EXTRAER"
                        Style="{StaticResource SectionLabel}"
@@ -115,4 +116,5 @@
             </StackPanel>
         </StackPanel>
     </Border>
+    </ScrollViewer>
 </Window>

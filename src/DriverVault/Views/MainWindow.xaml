@@ -3,26 +3,32 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:models="clr-namespace:DriverVault.Models"
         Title="DriverVault — Extractor &amp; Organizador de Drivers"
-        Width="1260"
-        Height="800"
-        MinWidth="1020"
-        MinHeight="680"
+        Width="1160"
+        Height="690"
+        MinWidth="780"
+        MinHeight="520"
         WindowStartupLocation="CenterScreen"
         Icon="pack://application:,,,/Assets/drivervault.ico"
         Background="{DynamicResource BgPrimary}"
         Foreground="{DynamicResource TextPrimary}"
         FontFamily="Segoe UI"
         FontSize="13">
-    <Grid Margin="20,16,20,18">
+    <Grid Margin="18,14,18,16">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <!-- HEADER SUPERIOR -->
-        <DockPanel Grid.Row="0" Margin="0,0,0,12" LastChildFill="False">
-            <StackPanel DockPanel.Dock="Left" Orientation="Horizontal" VerticalAlignment="Center">
+        <!-- HEADER SUPERIOR RESPONSIVE -->
+        <Grid Grid.Row="0" Margin="0,0,0,12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="12" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
                 <Border Width="38" Height="38"
                         CornerRadius="9"
                         Background="{DynamicResource AccentBg}"
@@ -45,13 +51,13 @@
                 </StackPanel>
             </StackPanel>
 
-            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center">
+            <WrapPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
                 <Border Background="{DynamicResource BgElevated}"
                         BorderBrush="{DynamicResource BorderSubtle}"
                         BorderThickness="1"
                         CornerRadius="14"
                         Padding="12,6"
-                        Margin="0,0,8,0">
+                        Margin="0,2,8,2">
                     <TextBlock x:Name="TxtSystemInfoPill"
                                Text="Cargando equipo..."
                                Foreground="{DynamicResource TextSecondary}"
@@ -64,7 +70,7 @@
                         BorderThickness="1"
                         CornerRadius="14"
                         Padding="10,6"
-                        Margin="0,0,8,0">
+                        Margin="0,2,8,2">
                     <TextBlock x:Name="TxtAdminBadge"
                                Text="Usuario estándar"
                                FontSize="11.5"
@@ -75,21 +81,22 @@
                         Content="Ejecutar como Admin"
                         Style="{StaticResource SecondaryButton}"
                         Click="BtnElevateAdmin_Click"
-                        Margin="0,0,8,0"
+                        Margin="0,2,8,2"
                         ToolTip="Reinicia DriverVault con permisos de Administrador para acceso total" />
 
                 <Button x:Name="BtnToggleTheme"
                         Content="Modo Claro"
                         Style="{StaticResource SecondaryButton}"
                         Click="BtnToggleTheme_Click"
-                        Margin="0,0,8,0" />
+                        Margin="0,2,8,2" />
 
                 <Button x:Name="BtnRescan"
                         Content="Re-escanear"
                         Style="{StaticResource SecondaryButton}"
-                        Click="BtnRescan_Click" />
-            </StackPanel>
-        </DockPanel>
+                        Click="BtnRescan_Click"
+                        Margin="0,2,0,2" />
+            </WrapPanel>
+        </Grid>
 
         <!-- BARRA DE AVISO / ESTADO EN TIEMPO REAL -->
         <Border Grid.Row="1" Style="{StaticResource NoticeBanner}" Margin="0,0,0,14">
@@ -116,9 +123,9 @@
         <!-- CUERPO PRINCIPAL (2 COLUMNAS) -->
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1.25*" MinWidth="540" />
-                <ColumnDefinition Width="16" />
-                <ColumnDefinition Width="0.95*" MinWidth="390" />
+                <ColumnDefinition Width="1.2*" MinWidth="370" />
+                <ColumnDefinition Width="14" />
+                <ColumnDefinition Width="0.95*" MinWidth="330" />
             </Grid.ColumnDefinitions>
 
             <!-- PANEL IZQUIERDO: EXPLORADOR DE DRIVERS -->
@@ -189,35 +196,42 @@
                     </WrapPanel>
 
                     <!-- Deduplicación + Acciones de selección -->
-                    <DockPanel Grid.Row="2" Margin="0,0,0,10" LastChildFill="False">
+                    <Grid Grid.Row="2" Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
                         <CheckBox x:Name="ChkHideDuplicates"
-                                  DockPanel.Dock="Left"
+                                  Grid.Column="0"
                                   Content="Ocultar versiones antiguas duplicadas"
                                   Style="{StaticResource ModernCheckBox}"
                                   IsChecked="True"
                                   Checked="FiltersChanged"
-                                  Unchecked="FiltersChanged" />
+                                  Unchecked="FiltersChanged"
+                                  VerticalAlignment="Center"
+                                  Margin="0,2,8,2" />
 
-                        <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                        <WrapPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
                             <Button Content="Seleccionar visibles"
                                     Style="{StaticResource SecondaryButton}"
                                     Padding="9,4"
                                     FontSize="11.5"
                                     Click="BtnSelectVisible_Click"
-                                    Margin="0,0,6,0" />
+                                    Margin="0,2,6,2" />
                             <Button Content="Ninguno"
                                     Style="{StaticResource SecondaryButton}"
                                     Padding="9,4"
                                     FontSize="11.5"
                                     Click="BtnDeselectAll_Click"
-                                    Margin="0,0,6,0" />
+                                    Margin="0,2,6,2" />
                             <Button Content="Solo activos"
                                     Style="{StaticResource SecondaryButton}"
                                     Padding="9,4"
                                     FontSize="11.5"
-                                    Click="BtnSelectActive_Click" />
-                        </StackPanel>
-                    </DockPanel>
+                                    Click="BtnSelectActive_Click"
+                                    Margin="0,2,0,2" />
+                        </WrapPanel>
+                    </Grid>
 
                     <!-- Barra resumen de lista -->
                     <DockPanel Grid.Row="3" Margin="0,0,0,8">

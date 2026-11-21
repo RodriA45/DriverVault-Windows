@@ -24,6 +24,8 @@ public partial class ConfirmBackupDialog : Window
         string extrasDescription)
     {
         InitializeComponent();
+        MaxHeight = Math.Max(420, SystemParameters.WorkArea.Height * 0.90);
+        MaxWidth = Math.Max(500, SystemParameters.WorkArea.Width * 0.94);
 
         TxtSubfolderNotice.Text =
             $"Se creará la carpeta \"{Path.GetFileName(finalOutputPath)}\" y dentro de ella se generarán aproximadamente {subfolderCount} subcarpetas organizadas por {orgModeLabel}. Cada driver quedará aislado en su propia subcarpeta para evitar conflictos.";

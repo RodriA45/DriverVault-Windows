@@ -12,6 +12,10 @@ public partial class SummaryDialog : Window
     public SummaryDialog(ExtractionSummary summary)
     {
         InitializeComponent();
+        MaxHeight = Math.Max(420, SystemParameters.WorkArea.Height * 0.90);
+        MaxWidth = Math.Max(540, SystemParameters.WorkArea.Width * 0.94);
+        Height = Math.Min(Height, MaxHeight);
+        Width = Math.Min(Width, MaxWidth);
         _summary = summary;
 
         if (summary.WasCancelled)
